@@ -2,7 +2,7 @@ const recipes = {
   "fooby.ch/en/recipes/14229/lasagne-al-forno": {
     Name: "Lasagne",
     recipe_url:
-      "https://fooby.ch/en/recipes/14229/lasagne-al-forno?startAuto1=4",
+      "https://fooby.ch/en/recipes/14229/lasagne-al-forno",
     picture_url: "https://recipecontent.fooby.ch/14229_3-2_1560-1040.jpg",
 
     ingredients: [
@@ -55,8 +55,8 @@ const recipes = {
   "fooby.ch/en/recipes/16427/provencale-style-rack-of-lamb-with-ratatouille": {
     Name: "Provencale-Style Rack of Lamb with Ratatouille",
     recipe_url:
-      "https://fooby.ch/en/recipes/16427/provencale-style-rack-of-lamb-with-ratatouille?startAuto1=0",
-    picture_url: "https://recipecontent.fooby.ch/16427_3-2_1560-1040.jpg 1x",
+      "https://fooby.ch/en/recipes/16427/provencale-style-rack-of-lamb-with-ratatouille",
+    picture_url: "https://recipecontent.fooby.ch/16427_3-2_1560-1040.jpg",
 
     ingredients: [
       {
@@ -96,8 +96,8 @@ const recipes = {
   "fooby.ch/en/recipes/12728/chocolate-dessert-with-strawberries": {
     Name: "Chocolate Dessert with Strawberries",
     recipe_url:
-      "https://fooby.ch/en/recipes/12728/chocolate-dessert-with-strawberries?startAuto1=4",
-    picture_url: "https://recipecontent.fooby.ch/12728_3-2_1560-1040.jpg 1x",
+      "https://fooby.ch/en/recipes/12728/chocolate-dessert-with-strawberries",
+    picture_url: "https://recipecontent.fooby.ch/12728_3-2_1560-1040.jpg",
 
     ingredients: [
       {
