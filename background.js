@@ -22,10 +22,7 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
                 
                 metaContainer.innerHTML = informationNode + metaContainer.innerHTML
 
-                var firstShareGroupe = document.getElementsByClassName('share-group')[0]
-
-                var addButtonListEntry = \`<li class="share-group__single">
-                            <a class="share-group__single-link tooltip-trigger tooltip-trigger-bound" href="#">
+                var addButtonListEntry = \`<a class="share-group__single-link tooltip-trigger tooltip-trigger-bound" href="#" id="add_to_mealplan">
                                 <div class="share-group__single-share-icon">
                                     
                                     <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -44,10 +41,14 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
                                     </svg>
                                 </div>
                                 <span class="share-group__single-share-copy">ADD TO MEALPLAN</span>
-                            </a>
-                        </li>\`
+                            </a>\`
 
-                firstShareGroupe.innerHTML = addButtonListEntry + firstShareGroupe.innerHTML
+                metaContainer.innerHTML += addButtonListEntry
+
+                document.getElementById("add_to_mealplan").addEventListener("click",
+                function() {
+                    chrome.runtime.sendMessage('Test message!')
+                }, false);
             `
         }
     )
@@ -55,6 +56,10 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
     url: [
         {urlPrefix : 'https://fooby.ch/en/recipes/14229/lasagne-al-forno'}
     ]
+})
+
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    console.log("Got message: " + message)
 })
 
 // const knownUrls = [
