@@ -5,6 +5,8 @@
     "permissions": [
         "storage",
         "webNavigation",
+        "tabs",
+        "https://fooby.ch/*"
     ],
     "background": {
         "scripts": ["background.js"],
