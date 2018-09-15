@@ -59,12 +59,14 @@ function enhanceWebsite(info, ingredients) {
                                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" style="fill: `+ color +`">
                                                 <path d="M256 0c-141.385 0-256 114.615-256 256s114.615 256 256 256 256-114.615 256-256-114.615-256-256-256zM256 480.001c-31.479 0-61.436-6.506-88.615-18.226l116.574-131.145c2.603-2.929 4.041-6.711 4.041-10.63v-48c0-8.837-7.163-16-16-16-56.495 0-116.102-58.731-116.687-59.313-3-3.001-7.070-4.687-11.313-4.687h-64c-8.836 0-16 7.164-16 16v96c0 6.061 3.424 11.601 8.845 14.311l55.155 27.578v93.943c-58.026-40.478-96-107.716-96-183.832 0-34.357 7.745-66.903 21.569-96h58.431c4.244 0 8.313-1.686 11.314-4.686l64-64c3-3.001 4.686-7.070 4.686-11.314v-38.706c20.281-6.037 41.759-9.294 64-9.294 35.203 0 68.502 8.13 98.141 22.6-2.072 1.751-4.088 3.582-6.023 5.518-18.133 18.132-28.118 42.239-28.118 67.882s9.985 49.75 28.118 67.882c18.217 18.216 42.609 28.132 67.817 28.13 1.583 0 3.171-0.040 4.759-0.118 6.907 25.901 19.376 93.328-4.202 186.167-0.222 0.872-0.348 1.744-0.421 2.612-40.662 41.54-97.35 67.328-160.071 67.328z"></path>
                                             </svg>
-                                            Emissions: ` + co2.toFixed(2) + ` kg CO<sub>2</sub>
+                                            <!-- Worlds: `+ worldEquivalent.toFixed(2) +`<br> -->
+                                            Emissions: ` + co2.toFixed(2) + ` kg CO<sub>2</sub> per person
                                         </div>\`
                 
                 metaContainer.innerHTML = informationNode + metaContainer.innerHTML
 
-                var addButtonListEntry = \`<a class="share-group__single-link tooltip-trigger tooltip-trigger-bound" href="#" id="add_to_mealplan">
+                var addButtonListEntry = \`
+                            <a class="share-group__single-link tooltip-trigger tooltip-trigger-bound" href="#" id="add_to_mealplan" style="padding-bottom: 15px;">
                                 <div class="share-group__single-share-icon">
                                     
                                     <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -89,7 +91,7 @@ function enhanceWebsite(info, ingredients) {
 
                 document.getElementById("add_to_mealplan").addEventListener("click",
                 function() {
-                    chrome.runtime.sendMessage('` + info.key + `')
+                    chrome.runtime.sendMessage('` + JSON.stringify(info) + `')
                 }, false);
             `
         }
@@ -116,19 +118,38 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
 })
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    var key = message
+    var info = JSON.parse(message)
+    var key = info.key
     if (key in recipes) {
-        addRecipeToMealplan(recipes[key])
+        addRecipeToMealplan(recipes[key], info.tabId)
     } else {
         console.log("Error: Recipe not found for storing.")
     }    
 })
 
-function addRecipeToMealplan(recipe) {
+function addRecipeToMealplan(recipe, tabId) {
+    chrome.tabs.executeScript(
+        tabId,
+        { 
+            code:  `document.getElementById('add_to_mealplan').classList = 'meta-info meta-info--big meta-info--visible-breaks'
+                    document.getElementById('add_to_mealplan').style.color = 'red'
+                    document.getElementById('add_to_mealplan').textContent = 'Saving...'`
+                }
+    )
+
     const restPath = '/recipes'
     axiosInstance.post(restPath, recipe)
     .then(function(response) {
         console.log("Successfuly added!")
+        chrome.tabs.executeScript(
+            tabId,
+            { 
+                code:  `document.getElementById('add_to_mealplan').textContent = 'Successfuly added!'
+                        setTimeout(function() {
+                            document.getElementById('add_to_mealplan').textContent = ''
+                        }, 2000)`
+            }
+        )
     })
     .catch(function(error) {
         console.log(error)

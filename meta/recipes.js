@@ -3,7 +3,7 @@ const recipes = {
     Name: "Lasagne",
     recipe_url:
       "https://fooby.ch/en/recipes/14229/lasagne-al-forno",
-    picture_url: "https://recipecontent.fooby.ch/14229_3-2_1560-1040.jpg",
+    picture_url: "https://recipecontent.fooby.ch/14229_131-150_262-300.jpg",
 
     ingredients: [
       {
