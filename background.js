@@ -21,6 +21,33 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
                                         </div>\`
                 
                 metaContainer.innerHTML = informationNode + metaContainer.innerHTML
+
+                var firstShareGroupe = document.getElementsByClassName('share-group')[0]
+
+                var addButtonListEntry = \`<li class="share-group__single">
+                            <a class="share-group__single-link tooltip-trigger tooltip-trigger-bound" href="#">
+                                <div class="share-group__single-share-icon">
+                                    
+                                    <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <defs>
+                                            <clipPath id="bookmark-cut">
+                                                <path d="M3.9922,18V2h3.0107v5.9873L9.5,6.2407l2.4961,1.7466V2h2.0879L14,8.0278c0,0-4-0.1943-5.4165,3.4722 c-1.4624,3.7852,1.7632,6.5,1.7632,6.5H3.9922z"></path>
+                                            </clipPath>
+                                        </defs>
+                                        <path class="animated" fill="#9B9B9B" d="M15.49023,13.00391l-1.49023,0V11.48235a.49389.49389,0,0,0-.49219-.50091.49971.49971,0,0,0-.5.5v1.52246H11.50316a.49971.49971,0,0,0-.5.5.48223.48223,0,0,0,.49488.48433h1.5098l0,1.53813a.496.496,0,1,0,.99173-.00827V13.99564l1.49849.00044a.48648.48648,0,0,0,.4922-.49217A.49971.49971,0,0,0,15.49023,13.00391Z"></path>
+                                        <path class="animated" fill="#9B9B9B" d="M15,8.21454V2.51221A1.51224,1.51224,0,0,0,13.48779,1H11.99658l-4.99365.00391H1V19H13.42761a.56376.56376,0,0,1,.07733,0A5.49656,5.49656,0,0,0,15,8.21454ZM7.95294,2h3.09363V6.16339l-1.0022-.70117-.54462-.381-.54462.381-1.0022.70117ZM2,2H3l.02344,16.00391L2,18ZM3.99219,18V2H7.00293V7.98749L9.49976,6.2406l2.49683,1.74689V2h1.49121A.51282.51282,0,0,1,14,2.51221V8.028c-.16333-.01465-.32794-.025-.49506-.025A5.49858,5.49858,0,0,0,10.34644,18Zm9.51276.00391A4.50046,4.50046,0,1,1,18,13.50348,4.50283,4.50283,0,0,1,13.50494,18.00391Z"></path>
+                                        <g clip-path="url(#bookmark-cut)">
+                                            <g class="fill-up">
+                                                <path class="animated" transform="translate(0, 20)" fill="#9B9B9B" d="M0,20.00392H20v-18.4a5.92753,5.92753,0,0,1-2.79687,1.11875c-4.98437.75-8.5625-2.67188-11.96875-2.625A6.014,6.014,0,0,0-.00392,2.89412Z"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <span class="share-group__single-share-copy">ADD TO MEALPLAN</span>
+                            </a>
+                        </li>\`
+
+                firstShareGroupe.innerHTML = addButtonListEntry + firstShareGroupe.innerHTML
             `
         }
     )
