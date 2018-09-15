@@ -2,6 +2,7 @@
     "name": "Team 6",
     "description": "Show the ecological footprint of your recipe",
     "version": "0.1",
+    "permissions": ["storage"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false 
