@@ -116,7 +116,6 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
 })
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    console.log("Got message: " + message)
     var key = message
     if (key in recipes) {
         addRecipeToMealplan(recipes[key])
@@ -127,11 +126,9 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 function addRecipeToMealplan(recipe) {
     const restPath = '/recipes'
-    console.log(recipe)
     axiosInstance.post(restPath, recipe)
     .then(function(response) {
         console.log("Successfuly added!")
-        console.log(response)
     })
     .catch(function(error) {
         console.log(error)
