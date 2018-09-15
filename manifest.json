@@ -1,0 +1,17 @@
+{
+    "name": "Team 6",
+    "description": "Show the ecological footprint of your recipe",
+    "version": "0.1",
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false 
+    },
+    "browser_action": {
+        "default_icon": "images/icon.png"
+    },
+    "icons": {
+        "128": "images/icon.png"
+    },
+    "options_page": "options.html",
+    "manifest_version": 2
+}
