@@ -214,3 +214,8 @@ function getScoreForIngredients(info, ingredients) {
         console.log(error)
     })
 }
+
+chrome.browserAction.onClicked.addListener(function(activeTab) {
+    var mealplanUrl = "http://localhost:8080";
+    chrome.tabs.create({ url: mealplanUrl });
+})
